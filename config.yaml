@@ -1,0 +1,42 @@
+model_path: "weights/weapon_detection_16cls.pt"
+person_model_path: "yolo11n.pt"
+source: 0
+device: "auto"
+imgsz: 384
+max_det: 50
+detect_persons: true
+person_every_n: 2
+conf:
+  weapon_high: 0.45
+  weapon_low: 0.25
+  person: 0.35
+zoom:
+  enabled: true
+  crop_fraction: 0.55     # берём 55% кадра по центру (для дальних объектов)
+  only_if_empty: true     # зум-проход только если на полном кадре ничего не нашли
+  conf_drop: 0.05         # на зуме порог ниже, чтобы ловить слабые дальние объекты
+save_alerts: true
+alert_dir: "alerts"
+alert_sound: false
+save_video: false
+
+map:
+  enabled: true
+  api_key: "YOUR_YANDEX_MAP_KEY"
+  zoom: 16
+  size: [650, 450]
+  refresh_sec: 5
+  window: "Карта: опасное место"
+  cameras:
+    - index: 0
+      name: "Камера 1 (ноутбук)"
+      lat: 54.5284
+      lon: 36.2799
+    - index: 1
+      name: "Камера 2"
+      lat: 54.5207
+      lon: 36.2844
+    - index: 2
+      name: "Камера 3"
+      lat: 54.5339
+      lon: 36.2743
